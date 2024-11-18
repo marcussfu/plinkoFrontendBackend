@@ -1,13 +1,15 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   frontend:
     build:
       context: ./frontend
-    # volumes:
-    #   - D:/vuedemo/project:/app
     ports:
       - "80:80"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
     depends_on:
       - backend
 
@@ -16,5 +18,7 @@ services:
       context: ./backend
     ports:
       - "3000:3000"
+    volumes:
+      - ./backend:/app
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
