@@ -9,9 +9,10 @@ RUN npm install
 
 COPY . .
 
-ENV NODE_ENV=development
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
 
-RUN npm run build
+RUN if [ "$NODE_ENV" = "production" ]; then npm run build; else npm run build:development; fi
 
 # production stage
 FROM nginx:stable-alpine AS production-stage

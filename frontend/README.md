@@ -46,3 +46,22 @@ npm run lint
 
 backend node js project url:
 https://github.com/marcussfu/plinko_nodeJS_TS.git
+
+
+## docker build and run cmd
+
+on frontend folder to cmd these code
+
+docker build --build-arg NODE_ENV=development -t my-app:dev .  // for development
+
+docker build --build-arg NODE_ENV=production -t my-app:pro .  // for production
+
+docker run -it -p 8080:80 my-app:dev // when build, we add dev and pro tag, so run image to container, need to figure tag, and we can also use same name
+
+docker run -it -p 8080:80 my-app:pro
+
+Ctrl + C to close the container
+
+docker start "container name"
+
+docker stop "container name"

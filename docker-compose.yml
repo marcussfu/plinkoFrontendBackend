@@ -4,21 +4,31 @@ services:
   frontend:
     build:
       context: ./frontend
+      args:
+        - NODE_ENV=${VITE_ENV}
     ports:
       - "80:80"
     environment:
-      - NODE_ENV=development
-    volumes:
-      - ./frontend:/app
+      - NODE_ENV=${VITE_ENV}
+    env_file:
+      - ./frontend/.env.${VITE_ENV}
+    # volumes:
+    #   - ./frontend:/app
     depends_on:
       - backend
 
   backend:
     build:
       context: ./backend
+      args:
+        - NODE_ENV=development
     ports:
+      # - "${PORT}:${PORT}"
       - "3000:3000"
-    volumes:
-      - ./backend:/app
+    # volumes:
+    #   - ./backend:/app
     environment:
       - NODE_ENV=development
+      - PORT=${PORT}
+    env_file:
+      - ./backend/.env
