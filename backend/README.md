@@ -19,6 +19,6 @@ you can run the project by the following step:
 
 on backend folder to run these cmd
 
-docker build -t plinko-backend
+docker build -t plinko-backend .
 
-docker run -it -p 3000:3000
+docker run -it -p 3000:3000 plinko-backend
